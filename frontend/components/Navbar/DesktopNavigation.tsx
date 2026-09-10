@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import React from 'react'
+
+
 
 interface NavProps {
     title: string;
@@ -17,7 +18,7 @@ const navigation: NavProps[] = [
 
 const DesktopNavigation = () => {
   return (
-    <div className='h-16 w-3/4 lg:flex hidden justify-between'>
+    <div className='h-16 w-3/4 lg:flex hidden justify-center'>
       <div className='h-full flex gap-6'>
         {navigation.map((item, ind) => (
           <Link
