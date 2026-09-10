@@ -7,7 +7,7 @@ const NavBar = () => {
       
       {/* Logo  */}
       <div className='w-fit px-4 py-1.5  '>
-        <p className='text-base uppercase text-primary font-bold font-mono cursor-pointer '>AVENRO</p>
+        <p className='text-base uppercase text-primary-active hover:text-primary-hover transition-all duration-300 font-bold font-sans cursor-pointer '>AVENRO</p>
       </div>
 
       <DesktopNavigation/>
