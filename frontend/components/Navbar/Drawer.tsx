@@ -3,7 +3,6 @@ import { X, ChevronRight } from "lucide-react";
 import { CiUser } from "react-icons/ci";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoCallOutline } from "react-icons/io5";
-
 const navItems = [
   {
     label: "New In",
@@ -93,8 +92,8 @@ export default function MobileDrawer() {
 
             <ul className="space-y-1">
 
-              {navItems.map((item) => (
-                <li key={item.href}>
+              {navItems.map((item:any, ind : number) => (
+                <li key={ind}>
 
                   <Link
                     href={item.href}

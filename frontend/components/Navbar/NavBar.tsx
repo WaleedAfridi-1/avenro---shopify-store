@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 const NavBar = () => {
   return (
-    <nav className='sticky top-0  w-full h-16 px-2 md:px-4 lg:px-10 py-6 flex justify-between  items-center bg-surface/80  border-b border-border shadow-sm '>
+    <nav className='sticky top-0 z-40  w-full h-16 px-2 md:px-4 lg:px-10 py-6 flex justify-between  items-center bg-surface/80  border-b border-border shadow-sm '>
       
       {/* sm Menu  */}
       <label htmlFor='avenro-drawer' className=' block lg:hidden '>
@@ -24,7 +24,7 @@ const NavBar = () => {
       {/* icons - login, search, wishlist,  cart   */}
       <div className='px-4   flex items-center gap-6'>
         <Link href={"#"} className='hidden md:block'>
-          <CiUser className='w-6 h-6  active:scale-95'/>
+          <CiUser className='w-6 h-6  active:scale-95 text-foreground'/>
         </Link>
 
         <Link href={"#"}>
