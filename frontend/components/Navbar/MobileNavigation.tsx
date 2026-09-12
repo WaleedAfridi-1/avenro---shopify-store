@@ -26,7 +26,7 @@ const MobileNavigation = () => {
             initial={{ x: -24, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -24, opacity: 0 }}
-            transition={{ duration: 0.30, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           >
             <p className="mb-3 px-3 text-[11px] font-medium uppercase tracking-[0.2em] text-text-muted">
               Shop
@@ -111,7 +111,7 @@ const MobileNavigation = () => {
                     <button
                       type="button"
                       onClick={() => toggleSection(ind)}
-                      className="flex w-full items-center justify-between px-3 py-3 text-sm font-medium text-text-primary transition hover:bg-surface-hover/30"
+                      className="flex cursor-pointer w-full items-center justify-between px-3 py-3 text-sm font-medium text-text-primary transition hover:bg-surface-hover/30"
                     >
                       <span>{item.title}</span>
                       <motion.span
@@ -119,11 +119,7 @@ const MobileNavigation = () => {
                         transition={{ duration: 0.2 }}
                         className="text-text-muted"
                       >
-                        {isOpen ? (
-                          <Minus size={16} />
-                        ) : (
-                          <GoPlus size={16} />
-                        )}
+                        {isOpen ? <Minus size={16} /> : <GoPlus size={16} />}
                       </motion.span>
                     </button>
 
@@ -135,11 +131,17 @@ const MobileNavigation = () => {
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                          transition={{
+                            duration: 0.25,
+                            ease: [0.4, 0, 0.2, 1],
+                          }}
                           className="ml-4 space-y-1 overflow-hidden border-l border-border pl-3"
                         >
                           {item.items.map((subItem: string, subInd: number) => (
-                            <li key={subInd} className="pt-1.5 first:pt-2 last:pb-2">
+                            <li
+                              key={subInd}
+                              className="pt-1.5 first:pt-2 last:pb-2"
+                            >
                               <Link
                                 href="#"
                                 className="block py-1.5 text-xs text-text-muted transition hover:text-text-primary"
@@ -155,13 +157,15 @@ const MobileNavigation = () => {
                 );
               })}
             </div>
-            <div className="relative w-4/5 h-60 justify-self-center rounded mt-4 shadow-sm">
-              <Image 
-              src={`${selectedCategory?.image}`}
-              fill
-              alt={`${selectedCategory?.title}`}
-              
+            <div className="group/img mt-5 relative h-80 w-64 overflow-hidden rounded-md border border-border shadow-md">
+              <Image
+                className="object-center object-cover group-hover/img:scale-105 transition-all duration-500 ease-in-out"
+                src={`${selectedCategory?.image}`}
+                fill
+                alt={`${selectedCategory?.title}`}
               />
+              {/* Subtle dark*/}
+              <div className="absolute  inset-0 bg-linear-to-t from-foreground/30 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover/img:opacity-100" />
             </div>
           </motion.div>
         )}

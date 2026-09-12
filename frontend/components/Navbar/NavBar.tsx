@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 const NavBar = () => {
   return (
-    <nav className='sticky top-0 z-40  w-full h-16 px-2 md:px-4 lg:px-10 py-6 flex justify-between  items-center bg-surface/80  border-b border-border shadow-sm '>
+    <nav  className=' sticky top-0 z-40  w-full h-16 px-2 md:px-4 lg:px-10 py-6 flex justify-between  items-center bg-surface/80  border-b border-border shadow-sm '>
       
       {/* sm Menu  */}
       <label htmlFor='avenro-drawer' className=' block lg:hidden '>

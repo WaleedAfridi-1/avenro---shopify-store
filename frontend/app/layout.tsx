@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/Navbar/NavBar";
 import Drawer from "@/components/Navbar/Drawer";
+import SearchBar from "@/components/Navbar/SearchBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,9 +26,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body lang="en"  className="min-h-full flex flex-col">
+      <body lang="en"  className="relative min-h-full flex flex-col">
         <Drawer/>
         <NavBar/>
+        <SearchBar/>
 
         <section>
           {children}

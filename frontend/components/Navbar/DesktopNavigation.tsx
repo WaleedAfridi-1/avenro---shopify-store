@@ -1,70 +1,121 @@
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { BiChevronDown } from "react-icons/bi";
 import { navigation } from "./NavigationItems";
+import { motion, AnimatePresence } from "framer-motion";
 
 const DesktopNavigation = () => {
-  return (
-    <div className="h-16 w-3/4 lg:flex hidden justify-center">
-      <div className="h-full flex gap-2">
-        {navigation.map((item, ind) => (
-          <div
-            key={ind}
-            className="group  h-full flex px-3 items-center text-center "
-          >
-            <Link
-              href={item.link}
-              className="relative flex items-center px-1 h-full text-primary whitespace-nowrap group-hover:text-primary-hover text-sm transition-colors duration-300"
-            >
-              <p className="text-sm">{item.title}</p>
-              {item.chevronIcon && (
-                <BiChevronDown className="group-hover:scale-101 group-hover:-rotate-180 transition-all duration-300 ease-in-out" />
-              )}
-              {/* Animated underline */}
-              <span className="absolute left-0 bottom-0 h-0.5 w-full bg-primary-hover scale-x-0 origin-left transition-transform duration-300 ease-out group-hover:scale-x-100" />
-            </Link>
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-            {/*  Dropdown */}
-            {item.chevronIcon && (
-              <div className="absolute    bg-surface border border-border-strong shadow-sm shadow-foreground left-1/2 -translate-x-1/2 top-full hidden w-full group-hover:block transition-all duration-500 ease-in-out">
-                {/* Content Container */}
-                <div className="mx-auto max-w-360 px-10 py-4 mt-4">
-                  <div className="flex items-start justify-center gap-20">
-                    {/* Sections  */}
-                    {item.chevronIcon  &&
-                      item.sections?.map((item: any, id:number) => {
-                        return (
-                          <div key={id} className="justify-start ">
-                            <p className="mb-5 text-start text-sm tracking-[0.25em] font-normal font-mono">
-                              {item.title}
+  return (
+    <div className="hidden h-16 w-3/4 justify-center lg:flex">
+      <div className="flex h-full gap-2">
+        {navigation.map((item: any, ind: number) => {
+          const isHovered = hoveredIndex === ind;
+
+          return (
+            <div
+              key={ind}
+              onMouseEnter={() => setHoveredIndex(ind)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              className="group  flex h-full items-center px-3 text-center"
+            >
+              <Link
+                href={item.link || "#"}
+                className="relative flex h-full items-center px-1 text-sm text-primary transition-colors duration-300 hover:text-primary-hover whitespace-nowrap"
+              >
+                <p className="text-sm">{item.title}</p>
+                {item.chevronIcon && (
+                  <BiChevronDown
+                    className={`ml-1 text-lg transition-transform duration-300 ease-in-out ${
+                      isHovered ? "rotate-180 scale-105" : "rotate-0"
+                    }`}
+                  />
+                )}
+
+                {/* Underline */}
+                <span
+                  className={`absolute bottom-0 left-0 h-0.5 w-full origin-left bg-primary-hover transition-transform duration-300 ease-out ${
+                    isHovered ? "scale-x-100" : "scale-x-0"
+                  }`}
+                />
+              </Link>
+
+              {/* Dropdown */}
+              <AnimatePresence>
+                {item.chevronIcon && isHovered && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 12, display: "none" }}
+                    animate={{ opacity: 1, y: 0, display: "block" }}
+                    exit={{ opacity: 0, y: 8, transition: { duration: 0.25 } }}
+                    transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 w-full max-w-7xl border border-border-strong bg-surface shadow-xl shadow-foreground/5 z-50 overflow-hidden"
+                  >
+                    {/* Content Container */}
+                    <div className="mx-auto px-10 py-8">
+                      <div className="flex items-start justify-center gap-16">
+                        {/* Navigation Sections */}
+                        {item.sections?.map((section: any, id: number) => (
+                          <motion.div
+                            key={id}
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{
+                              duration: 0.25,
+                              delay: id * 0.04,
+                            }}
+                            className="text-left"
+                          >
+                            <p className="mb-4 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-text-primary">
+                              {section.title}
                             </p>
 
-                            <div className="space-y-3  flex flex-col items-start ">
-                              {item.items.map((cat : any) => {
-                                return (
-                                  <Link key={cat} href="#" className="text-text-muted hover:text-foreground/80 font-mono transition-all duration-300 ease-in-out">
+                            <div className="flex flex-col space-y-2.5">
+                              {section.items?.map((cat: string, catIdx: number) => (
+                                <Link
+                                  key={catIdx}
+                                  href="#"
+                                  className="group/link flex items-center font-mono text-xs text-text-muted transition-colors duration-200 hover:text-foreground"
+                                >
+                                  <span className="transition-transform duration-200 group-hover/link:translate-x-1">
                                     {cat}
-                                  </Link>
-                                ) 
-                              })}
+                                  </span>
+                                </Link>
+                              ))}
                             </div>
-                          </div>
-                        );
-                      })}
-                      <div className="relative   w-64 h-80 items-start overflow-hidden rounded shadow-sm border border-border">
-                        <Image
-                        className="object-cover object-center "
-                        alt="man"
-                        fill
-                        src={`${item.image}`}
-                        />
+                          </motion.div>
+                        ))}
+
+                        {/* Banner Image Card */}
+                        {item.image && (
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0.96 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.3, delay: 0.1 }}
+                            className="group/img relative h-80 w-64 overflow-hidden rounded-md border border-border shadow-md"
+                          >
+                            <Image
+                              className="object-cover object-center transition-transform duration-500 ease-out group-hover/img:scale-105"
+                              alt={item.title || "Category banner"}
+                              fill
+                              src={item.image}
+                              sizes="256px"
+                            />
+                            {/* Subtle dark*/}
+                            <div className="absolute inset-0 bg-linear-to-t from-foreground/30 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover/img:opacity-100" />
+                          </motion.div>
+                        )}
                       </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
