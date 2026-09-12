@@ -1,40 +1,10 @@
 import Link from "next/link";
-import { X, ChevronRight } from "lucide-react";
+import { X } from "lucide-react";
 import { CiUser } from "react-icons/ci";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoCallOutline } from "react-icons/io5";
-const navItems = [
-  {
-    label: "New In",
-    href: "#",
-    ChevronRight : false
-  },
-  {
-    label: "Men",
-    href: "#",
-    ChevronRight : true
-  },
-  {
-    label: "Women",
-    href: "#",
-    ChevronRight : true
-  },
-  {
-    label: "Accessories",
-    href: "#",
-    ChevronRight : true
-  },
-  {
-    label: "Best Sellers",
-    href: "#",
-    ChevronRight : false
-  },
-  {
-    label: "Sale",
-    href: "#",
-    ChevronRight : false
-  },
-];
+import MobileNavigation from "./MobileNavigation";
+
 
 export default function MobileDrawer() {
   return (
@@ -83,39 +53,9 @@ export default function MobileDrawer() {
 
           </div>
 
-          {/* Navigation */}
-          <nav className="flex-1 px-4 py-6">
+          {/* Mobile Navigation */}
+          <MobileNavigation/>
 
-            <p className="mb-3 px-3 text-[11px] font-medium uppercase tracking-[0.2em] text-text-muted">
-              Shop
-            </p>
-
-            <ul className="space-y-1">
-
-              {navItems.map((item:any, ind : number) => (
-                <li key={ind}>
-
-                  <Link
-                    href={item.href}
-                    className="group flex items-center justify-between px-3 py-3 text-sm font-medium text-text-primary transition hover:bg-surface-hover"
-                  >
-                    <span>{item.label}</span>
-                    {
-                        item.ChevronRight && (
-                            <ChevronRight
-                              size={16}
-                              strokeWidth={1.5}
-                              className="text-text-muted transition-transform group-hover:translate-x-1"
-                            />
-                        )}
-                  </Link>
-
-                </li>
-              ))}
-
-            </ul>
-
-          </nav>
 
           {/* Bottom */}
           <div className="border-t border-border px-6 py-6">
