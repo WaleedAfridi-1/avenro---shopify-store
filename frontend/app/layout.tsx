@@ -4,6 +4,7 @@ import "./globals.css";
 import NavBar from "@/components/Navbar/NavBar";
 import Drawer from "@/components/Navbar/Drawer";
 import SearchBar from "@/components/Navbar/SearchBar";
+import ReduxProvider from "@/src/redux/Provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,13 +28,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body lang="en"  className="relative min-h-full flex flex-col">
-        <Drawer/>
-        <NavBar/>
-        <SearchBar/>
 
-        <section>
+        <ReduxProvider>
+          <Drawer/>
+          <NavBar/>
+          <SearchBar/>
+          
           {children}
-        </section>
+
+        </ReduxProvider>
         
         </body>
     </html>

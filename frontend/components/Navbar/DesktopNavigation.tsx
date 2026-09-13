@@ -52,7 +52,7 @@ const DesktopNavigation = () => {
                     animate={{ opacity: 1, y: 0, display: "block" }}
                     exit={{ opacity: 0, y: 8, transition: { duration: 0.25 } }}
                     transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 w-full max-w-7xl border border-border-strong bg-surface shadow-xl shadow-foreground/5 z-50 overflow-hidden"
+                    className="absolute top-full left-1/2 -translate-x-1/2 w-full  border border-border-strong bg-surface shadow-xl shadow-foreground/5 z-50 overflow-hidden"
                   >
                     {/* Content Container */}
                     <div className="mx-auto px-10 py-8">

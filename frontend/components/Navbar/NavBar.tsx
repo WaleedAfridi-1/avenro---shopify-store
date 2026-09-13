@@ -1,13 +1,17 @@
+"use client"
 import React from 'react'
 import DesktopNavigation from './DesktopNavigation'
 import { CiUser } from "react-icons/ci";
 import { IoIosSearch, IoIosMenu, IoMdHeartEmpty } from "react-icons/io";
 import { BsHandbag } from "react-icons/bs";
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import { setSearchOpen } from '@/src/redux/slices/SearchSlice';
 
 const NavBar = () => {
+  const dispatch = useDispatch()
   return (
-    <nav  className=' sticky top-0 z-40  w-full h-16 px-2 md:px-4 lg:px-10 py-6 flex justify-between  items-center bg-surface/80  border-b border-border shadow-sm '>
+    <nav  className=' sticky top-0 z-99  w-full h-16 px-2 md:px-4 lg:px-10 py-6 flex justify-between  items-center bg-surface/ backdrop-blur-sm  border-b border-border shadow-sm '>
       
       {/* sm Menu  */}
       <label htmlFor='avenro-drawer' className=' block lg:hidden '>
@@ -27,9 +31,12 @@ const NavBar = () => {
           <CiUser className='w-6 h-6  active:scale-95 text-foreground'/>
         </Link>
 
-        <Link href={"#"}>
-          <IoIosSearch className='w-6 h-6 active:scale-95'/>
-        </Link>
+        <button
+        onClick={() => dispatch(setSearchOpen(true))}
+        >
+          <IoIosSearch 
+          className='w-6 h-6 cursor-pointer active:scale-95'/>
+        </button>
 
         <Link href={"#"} className='hidden lg:block'>
           <IoMdHeartEmpty className='w-6 h-6 active:scale-95'/>
