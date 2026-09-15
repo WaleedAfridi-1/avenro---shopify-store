@@ -1,13 +1,10 @@
 @import "tailwindcss";
 @plugin "daisyui";
-/* =========================================================
-   AVENRO — Design Tokens
-   Premium Everyday Fashion
-   ========================================================= */
+
 
 :root {
   /* -------------------------------------------------------
-     Base / Brand
+   
      ------------------------------------------------------- */
 
   --background: #faf9f6;
@@ -21,6 +18,7 @@
   --surface-muted: #f3f1ec;
   --surface-subtle: #f7f6f2;
   --surface-hover: #eceae5;
+  --surface-glass: rgba(255, 255, 255, 0.75);
 
   /* -------------------------------------------------------
      Brand / Actions
@@ -175,6 +173,7 @@
   --color-surface-muted: var(--surface-muted);
   --color-surface-subtle: var(--surface-subtle);
   --color-surface-hover: var(--surface-hover);
+  --color-surface-glass: var(--surface-glass);
 
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);

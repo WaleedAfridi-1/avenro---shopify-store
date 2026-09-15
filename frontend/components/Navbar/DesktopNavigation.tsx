@@ -7,7 +7,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { navigation } from "./NavigationItems";
 import { motion, AnimatePresence } from "framer-motion";
 
-const DesktopNavigation = () => {
+const DesktopNavigation = ({isScrolled, searchIsOpen} : {isScrolled : any; searchIsOpen?: boolean}) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
@@ -21,13 +21,13 @@ const DesktopNavigation = () => {
               key={ind}
               onMouseEnter={() => setHoveredIndex(ind)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="group  flex h-full items-center px-3 text-center"
+              className=" flex h-full items-center px-3 text-center"
             >
               <Link
                 href={item.link || "#"}
-                className="relative flex h-full items-center px-1 text-sm text-primary transition-colors duration-300 hover:text-primary-hover whitespace-nowrap"
+                className={`${isScrolled ? `text-foreground`:`${searchIsOpen ? "text-foreground" : "text-text-inverse"}`} relative flex h-full items-center px-1 text-sm  transition-colors duration-300 group-hover:text-primary hover:text-primary-active whitespace-nowrap`}
               >
-                <p className="text-sm">{item.title}</p>
+                <p className="text-sm  tracking-wide">{item.title}</p>
                 {item.chevronIcon && (
                   <BiChevronDown
                     className={`ml-1 text-lg transition-transform duration-300 ease-in-out ${
@@ -38,7 +38,7 @@ const DesktopNavigation = () => {
 
                 {/* Underline */}
                 <span
-                  className={`absolute bottom-0 left-0 h-0.5 w-full origin-left bg-primary-hover transition-transform duration-300 ease-out ${
+                  className={`absolute -bottom-2 left-0 h-0.5 w-full origin-left bg-primary-hover transition-transform duration-300 ease-out ${
                     isHovered ? "scale-x-100" : "scale-x-0"
                   }`}
                 />
@@ -69,7 +69,7 @@ const DesktopNavigation = () => {
                             }}
                             className="text-left"
                           >
-                            <p className="mb-4 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-text-primary">
+                            <p className="mb-4 font-mono text-sm font-semibold uppercase tracking-[0.2em] text-text-primary">
                               {section.title}
                             </p>
 
@@ -78,7 +78,7 @@ const DesktopNavigation = () => {
                                 <Link
                                   key={catIdx}
                                   href="#"
-                                  className="group/link flex items-center font-mono text-xs text-text-muted transition-colors duration-200 hover:text-foreground"
+                                  className="group/link flex items-center font-mono text-sm text-text-muted transition-colors duration-200 hover:text-foreground"
                                 >
                                   <span className="transition-transform duration-200 group-hover/link:translate-x-1">
                                     {cat}

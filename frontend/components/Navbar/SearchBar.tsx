@@ -50,7 +50,7 @@ const SearchBar = () => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "-100%", opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed top-16 left-0 right-0 z-50 w-full bg-surface shadow-md border-b border-border-strong px-3 md:px-14 py-4"
+            className="fixed top-16 left-0 right-0 z-50 w-full bg-surface shadow-md border-y  border-border-strong px-3 md:px-14 py-4"
           >
             <div className="max-w-7xl mx-auto flex items-center gap-3">
               <IoIosSearch className="w-6 h-6 text-foreground/70 shrink-0" />

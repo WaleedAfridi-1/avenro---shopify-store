@@ -3,8 +3,9 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className=" h-screen flex items-center justify-center">
+    <main className=" min-h-screen flex flex-col gap-4 items-center justify-center">
       <Hero/>
+      <div className="w-full min-h-screen"></div>
     </main>
   );
 }
