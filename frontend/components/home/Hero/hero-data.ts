@@ -7,26 +7,26 @@ export interface Banner {
 }
 
 export const banners: Banner[] = [
-  {
+    {
     id: 1,
+    image: "/collections/women.jpg",
+    eyebrow: "NEW IN",
+    title: "THE EVERYDAY EDIT",
+    link: "/collections/women",
+  },
+  {
+    id: 2,
     image: "/collections/man.jpg",
     eyebrow: "MEN'S EDIT",
     title: "EVERYDAY ESSENTIALS",
     link: "/collections/men",
   },
   {
-    id: 2,
+    id: 3,
     image: "/collections/accessoriesWomen.jpg",
     eyebrow: "ACCESSORIES",
     title: "THE FINISHING TOUCH",
     link: "/collections/accessories",
-  },
-  {
-    id: 3,
-    image: "/collections/women.jpg",
-    eyebrow: "NEW IN",
-    title: "THE EVERYDAY EDIT",
-    link: "/collections/women",
   },
   {
     id: 4,

@@ -42,7 +42,7 @@ return (
     >
       {/* Mobile Menu */}
       <label htmlFor='avenro-drawer' className='block lg:hidden'>
-        <IoIosMenu className={`${isScrolled ? `text-foreground`:`${searchIsOpen ? "text-foreground" : "text-text-inverse"}`} h-6 w-6 cursor-pointer active:scale-95`}/>
+        <IoIosMenu className={`${isScrolled ? `text-foreground`:`${searchIsOpen ? "text-foreground" : "text-text-inverse"}`} group-hover:text-foreground h-6 w-6 cursor-pointer active:scale-95`}/>
       </label>
 
       {/* Logo */}
