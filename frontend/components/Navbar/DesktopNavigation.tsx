@@ -69,11 +69,11 @@ const DesktopNavigation = ({isScrolled, searchIsOpen} : {isScrolled : any; searc
                             }}
                             className="text-left"
                           >
-                            <p className="mb-4 font-mono text-sm font-semibold uppercase tracking-[0.2em] text-text-primary">
+                            <p className="mb-4 font-mono border-b border-border-focus w-fit pb-4 text-sm font-semibold uppercase tracking-[0.2em] text-text-primary">
                               {section.title}
                             </p>
 
-                            <div className="flex flex-col space-y-2.5">
+                            <div className="flex  flex-col space-y-2.5">
                               {section.items?.map((cat: string, catIdx: number) => (
                                 <Link
                                   key={catIdx}
